@@ -1,0 +1,16 @@
+services:
+    marcosfpo.groupicon.viewtopic_listener:
+        class: marcosfpo\groupicon\event\viewtopic_listener
+        arguments:
+            - @user
+            - @dbal.conn
+        tags:
+            - { name: event.listener }
+
+    marcosfpo.groupicon.acp_listener:
+        class: marcosfpo\groupicon\event\acp_listener
+        arguments:
+            - @request
+            - @template
+        tags:
+            - { name: event.listener }

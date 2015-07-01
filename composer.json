@@ -1,0 +1,29 @@
+{
+	"name": "marcosfpo/groupicon",
+	"type": "phpbb-extension",
+	"description": "Associates icons to the groups and displays the icons of the groups that a user belongs on your avatar.",
+	"version": "1.0.0-DEV",
+	"time": "2015-06-29",
+	"keywords": ["phpbb", "extension", "groupicon"],
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "marcosfpo",
+			"homepage": "",
+			"email": "marcosfpo@gmail.com",
+			"role": "Extension Developer"
+		}
+	],
+	"require": {
+		"php": ">=5.3.3"
+	},
+	"require-dev": {
+		"phpbb/epv": "dev-master"
+	},
+	"extra": {
+		"display-name": "Group Icon",
+		"soft-require": {
+			"phpbb/phpbb": ">=3.1.0-a1,<3.2.*@dev"
+		}
+	}
+}
