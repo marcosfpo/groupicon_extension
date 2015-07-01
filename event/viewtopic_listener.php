@@ -63,7 +63,7 @@ class viewtopic_listener implements EventSubscriberInterface
         $user_cache = $event['user_poster_data'];
 
         // Groups in viewtopic
-        $sql = 'SELECT group_id, group_name, group_type
+        $sql = 'SELECT group_id, group_name, group_type, group_groupicon_iconpath
 		FROM ' . GROUPS_TABLE . '
 		WHERE group_type <> ' . GROUP_HIDDEN;
         $result = $this->db->sql_query($sql);

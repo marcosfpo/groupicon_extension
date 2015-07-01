@@ -9,7 +9,7 @@
  *
  */
 
-namespace phpbb\autogroups\migrations\v10x;
+namespace marcosfpo\groupicon\migrations\v10x;
 
 /**
  * Migration stage 1: Initial schema

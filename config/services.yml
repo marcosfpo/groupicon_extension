@@ -12,5 +12,7 @@ services:
         arguments:
             - @request
             - @template
+            - @log
+            - @user
         tags:
             - { name: event.listener }
