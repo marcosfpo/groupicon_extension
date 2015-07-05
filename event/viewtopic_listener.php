@@ -1,13 +1,13 @@
 <?php
 
 /**
-*
-* Group Icon
-*
-* @copyright (c) 2015 MarcosFPo
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Group Icon
+ *
+ * @copyright (c) 2015 MarcosFPo
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace marcosfpo\groupicon\event;
 
@@ -66,12 +66,21 @@ class viewtopic_listener implements EventSubscriberInterface
         $sql = 'SELECT group_id, group_name, group_type, group_groupicon_iconpath
 		FROM ' . GROUPS_TABLE . '
 		WHERE group_type <> ' . GROUP_HIDDEN;
+
         $result = $this->db->sql_query($sql);
+
         while ($row = $this->db->sql_fetchrow($result))
         {
             $groups_name[$row['group_id']] = ($row['group_type'] == GROUP_SPECIAL) ? $this->user->lang['G_' . $row['group_name']] : $row['group_name'];
+            $groups_icons[$row['group_id']] = (is $row['group_groupicon_iconpath'] == GROUP_SPECIAL) ? $this->user->lang['G_' . $row['group_name']] : $row['group_name'];
         }
         $this->db->sql_freeresult($result);
+
+        foreach ($groups_name as $key => $value)
+        {
+            echo("$key  =>  $value <br />");
+        }
+
 
         $event['post_row'] = array_merge($event['post_row'], array(
             'POSTER_GROUP' => $groups_name[$user_cache['group_id']],
