@@ -3,6 +3,7 @@ services:
         class: marcosfpo\groupicon\event\viewtopic_listener
         arguments:
             - @user
+            - @template
             - @dbal.conn
         tags:
             - { name: event.listener }
