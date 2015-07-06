@@ -9,9 +9,9 @@
 	"authors": [
 		{
 			"name": "marcosfpo",
-			"homepage": "",
+			"homepage": "https://github.com/marcosfpo",
 			"email": "marcosfpo@gmail.com",
-			"role": "Extension Developer"
+			"role": "Developer"
 		}
 	],
 	"require": {

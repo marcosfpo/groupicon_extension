@@ -1,25 +1,24 @@
 <?php
 
 /**
-*
-* Group Icon
-*
-* @copyright (c) 2015 MarcosFPo
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
-
+ *
+ * Group Icon
+ *
+ * @copyright (c) 2015 MarcosFPo
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 /**
-* DO NOT CHANGE
-*/
+ * DO NOT CHANGE
+ */
 if (!defined('IN_PHPBB'))
 {
-	exit;
+    exit;
 }
 
 if (empty($lang) || !is_array($lang))
 {
-	$lang = array();
+    $lang = array();
 }
 
 // DEVELOPERS PLEASE NOTE
@@ -39,6 +38,6 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'ACP_GROUPICON_ICONPATH'		=> 'Ícone do grupo',
-	'ACP_GROUPICON_ICONPATH_EXPLAIN'	=> 'Caminho até a imagem que servirá de ícone para o grupo.',
-));
+    'ACP_GROUPICON_ICONPATH' => 'Ícone do grupo',
+    'ACP_GROUPICON_ICONPATH_EXPLAIN' => 'Caminho até a imagem que servirá de ícone para o grupo.',
+        ));

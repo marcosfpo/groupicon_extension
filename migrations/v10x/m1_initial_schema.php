@@ -1,13 +1,13 @@
 <?php
 
 /**
-*
-* Group Icon
-*
-* @copyright (c) 2015 MarcosFPo
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Group Icon
+ *
+ * @copyright (c) 2015 MarcosFPo
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace marcosfpo\groupicon\migrations\v10x;
 

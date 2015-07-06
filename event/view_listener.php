@@ -1,13 +1,13 @@
 <?php
 
 /**
-*
-* Group Icon
-*
-* @copyright (c) 2015 MarcosFPo
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Group Icon
+ *
+ * @copyright (c) 2015 MarcosFPo
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace marcosfpo\groupicon\event;
 
@@ -18,10 +18,9 @@ class view_listener implements EventSubscriberInterface
 
     /** @var \phpbb\db\driver\driver_interface */
     protected $db;
-    
+
     /** @var \phpbb\template\template */
     protected $template;
-
 
     public function __construct(\phpbb\template\template $template, \phpbb\db\driver\driver_interface $db)
     {
@@ -39,13 +38,13 @@ class view_listener implements EventSubscriberInterface
         );
     }
 
-     public function viewtopic_modify_post_row($event)
-     {
+    public function viewtopic_modify_post_row($event)
+    {
         $row = $event['row'];
-	
-	$event['post_row'] = array_merge($event['post_row'], array(
-		'POSTER_GROUPS_ICONS' => $this->gererate_groupicons($row['user_id']),
-	));
+
+        $event['post_row'] = array_merge($event['post_row'], array(
+            'POSTER_GROUPS_ICONS' => $this->gererate_groupicons($row['user_id']),
+        ));
     }
 
     public function viewtopic_cache_user_data($event)
@@ -61,28 +60,28 @@ class view_listener implements EventSubscriberInterface
         $array['group_id'] = '';
         $event['user_cache_data'] = $array;
     }
-    
+
     public function memberlist_view_profile($event)
     {
-	$data = $event['member'];
-	$groupicons = $this->gererate_groupicons($data['user_id']);
-	
-	$this->template->assign_vars(array(
-		'GROUPS_ICONS'	=> $groupicons,
-	));
+        $data = $event['member'];
+        $groupicons = $this->gererate_groupicons($data['user_id']);
+
+        $this->template->assign_vars(array(
+            'GROUPS_ICONS' => $groupicons,
+        ));
     }
-    
-    protected function gererate_groupicons($user_id) 
+
+    protected function gererate_groupicons($user_id)
     {
 
-	$sql = 'SELECT g.group_id , g.group_name , g.group_groupicon_iconpath, g.group_type, gu.user_id 
+        $sql = 'SELECT g.group_id , g.group_name , g.group_groupicon_iconpath, g.group_type, gu.user_id 
 		FROM ' . GROUPS_TABLE . ' g INNER JOIN ' . USER_GROUP_TABLE . ' gu 
 			ON g.group_id = gu.group_id 
 		WHERE (g.group_groupicon_iconpath <> NULL OR g.group_groupicon_iconpath <>  "") 
 			AND g.group_type <> ' . GROUP_HIDDEN . ' 
 			AND gu.user_id = ' . $user_id;
 
-	$return_code = '';
+        $return_code = '';
         $result = $this->db->sql_query($sql);
         while ($row = $this->db->sql_fetchrow($result))
         {
@@ -93,7 +92,7 @@ class view_listener implements EventSubscriberInterface
         }
         $this->db->sql_freeresult($result);
 
-	return $return_code;
+        return $return_code;
     }
-    
+
 }
