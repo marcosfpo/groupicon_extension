@@ -1,8 +1,8 @@
 services:
-    marcosfpo.groupicon.viewtopic_listener:
-        class: marcosfpo\groupicon\event\viewtopic_listener
+    marcosfpo.groupicon.view_listener:
+        class: marcosfpo\groupicon\event\view_listener
         arguments:
-            - @user
+            - @template
             - @dbal.conn
         tags:
             - { name: event.listener }

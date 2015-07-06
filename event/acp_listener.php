@@ -25,12 +25,6 @@ class acp_listener implements EventSubscriberInterface
     /** @var \phpbb\template\template */
     protected $template;
 
-    /** @var \phpbb\log\log */
-    protected $log;
-
-    /** @var \phpbb\user */
-    protected $user;
-
     /**
      * Constructor
      *
@@ -43,24 +37,23 @@ class acp_listener implements EventSubscriberInterface
     {
         $this->request = $request;
         $this->template = $template;
-        $this->log = $log;
-        $this->user = $user;
     }
 
     static public function getSubscribedEvents()
     {
         return array(
+            'core.user_setup' => 'load_language_on_setup',
+            'core.acp_manage_group_initialise_data' => 'group_initialise_data',
             'core.acp_manage_group_request_data' => 'group_request_data',
             'core.acp_manage_group_display_form' => 'group_display_form',
-            'core.acp_manage_group_initialise_data' => 'group_initialise_data',
-            'core.user_setup' => 'load_language_on_setup',
         );
     }
 
     public function group_request_data($event)
     {
         $submit_ary = $event['submit_ary'];
-        $submit_ary['group_groupicon_iconpath'] = $this->request->variable('group_groupicon_iconpath', '');
+
+        $submit_ary['groupicon_iconpath'] = $this->request->variable('group_groupicon_iconpath', '');
         $event['submit_ary'] = $submit_ary;
     }
 
@@ -76,7 +69,7 @@ class acp_listener implements EventSubscriberInterface
     public function group_initialise_data($event)
     {
         $test_variables = $event['test_variables'];
-        $test_variables['group_groupicon_iconpath'] = 'str';
+        $test_variables['groupicon_iconpath'] = 'string';
         $event['test_variables'] = $test_variables;
     }
 

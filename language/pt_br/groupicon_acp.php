@@ -1,7 +1,8 @@
 <?php
+
 /**
 *
-* Group Icon extension for the phpBB Forum Software package.
+* Group Icon
 *
 * @copyright (c) 2015 MarcosFPo
 * @license GNU General Public License, version 2 (GPL-2.0)

@@ -1,13 +1,13 @@
 <?php
 
 /**
- *
- * Group Icon
- *
- * @copyright (c) 2015 MarcosFPo
- * @license GNU General Public License, version 2 (GPL-2.0)
- *
- */
+*
+* Group Icon
+*
+* @copyright (c) 2015 MarcosFPo
+* @license GNU General Public License, version 2 (GPL-2.0)
+*
+*/
 
 namespace marcosfpo\groupicon\migrations\v10x;
 
@@ -17,13 +17,6 @@ namespace marcosfpo\groupicon\migrations\v10x;
 class m1_initial_schema extends \phpbb\db\migration\migration
 {
 
-    /**
-     * Assign migration file dependencies for this migration
-     *
-     * @return array Array of migration files
-     * @static
-     * @access public
-     */
     static public function depends_on()
     {
         return array('\phpbb\db\migration\data\v310\gold');
