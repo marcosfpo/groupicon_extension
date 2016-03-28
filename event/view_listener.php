@@ -88,7 +88,16 @@ class view_listener implements EventSubscriberInterface
         {
             $group_name = ($row['group_type'] == GROUP_SPECIAL) ? $this->user->lang['G_' . $row['group_name']] : $row['group_name'];
             $return_code .= '<span title="' . $group_name . '" style="padding-right: 3px; padding-top: 3px; display: inline-block;">';
-            $return_code .= '<img width="48px" height="48px" src="' . $row['group_groupicon_iconpath'] . '">';
+            if (isset($row['group_groupicon_grouptopic']) && $row['group_groupicon_grouptopic'] <> 0)
+            {
+                $return_code .= '<a href="/viewtopic.php?t=' . $row['group_groupicon_iconpath'] . '" target="_parent">';
+                $return_code .= '<img width="48px" height="48px" src="' . $row['group_groupicon_iconpath'] . '">';
+                $return_code .= '</a>';
+            } 
+            else
+            {
+                $return_code .= '<img width="48px" height="48px" src="' . $row['group_groupicon_iconpath'] . '">';
+            }
             $return_code .= '</span>';
         }
         $this->db->sql_freeresult($result);

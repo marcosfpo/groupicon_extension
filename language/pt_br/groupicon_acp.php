@@ -41,4 +41,5 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	'ACP_GROUPICON_ICONPATH'		=> 'Ícone do grupo',
 	'ACP_GROUPICON_ICONPATH_EXPLAIN'	=> 'Caminho até a imagem que servirá de ícone para o grupo.',
-));
+	'ACP_GROUPICON_GROUPTOPIC'		=> 'Número do tópico do grupo',
+	'ACP_GROUPICON_GROUPTOPIC_EXPLAIN'	=> 'Número do tópico de referência para o grupo.',));

@@ -42,4 +42,6 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	'ACP_GROUPICON_ICONPATH'		=> 'Icon path',
 	'ACP_GROUPICON_ICONPATH_EXPLAIN'	=> 'Image that will be used as icon for this group.',
+	'ACP_GROUPICON_GROUPTOPIC'		=> 'Group Topic ID',
+	'ACP_GROUPICON_GROUPTOPIC_EXPLAIN'	=> 'ID of reference topic for the group.',
 ));

@@ -54,6 +54,7 @@ class acp_listener implements EventSubscriberInterface
         $submit_ary = $event['submit_ary'];
 
         $submit_ary['groupicon_iconpath'] = $this->request->variable('group_groupicon_iconpath', '');
+        $submit_ary['groupicon_grouptopic'] = $this->request->variable('group_groupicon_grouptopic', '');
         $event['submit_ary'] = $submit_ary;
     }
 
@@ -63,6 +64,7 @@ class acp_listener implements EventSubscriberInterface
 
         $this->template->assign_vars(array(
             'GROUP_GROUPICON_ICONPATH' => (isset($group_row['group_groupicon_iconpath'])) ? $group_row['group_groupicon_iconpath'] : '',
+            'GROUP_GROUPICON_GROUPTOPIC' =>  (isset($group_row['group_groupicon_grouptopic'])) ? $group_row['group_groupicon_grouptopic'] : '',
         ));
     }
 
