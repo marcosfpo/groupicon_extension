@@ -9,7 +9,7 @@
 *
 */
 
-namespace marcosfpo\groupicon\migrations\v10x;
+namespace marcosfpo\groupicon\migrations;
 
 /**
  * Migration stage 1: Initial schema
@@ -27,7 +27,7 @@ class m1_initial_schema extends \phpbb\db\migration\migration
         return array(
             'add_columns' => array(
                 $this->table_prefix . 'groups' => array(
-                    'group_groupicon_grouptopic' => array('INT', '0'),
+                    'group_groupicon_iconpath' => array('VCHAR:255', ''),
                 ),
             ),
         );
@@ -38,7 +38,7 @@ class m1_initial_schema extends \phpbb\db\migration\migration
         return array(
             'drop_columns' => array(
                 $this->table_prefix . 'groups' => array(
-                    'group_groupicon_grouptopic',
+                    'group_groupicon_iconpath',
                 ),
             ),
         );

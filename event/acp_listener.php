@@ -24,6 +24,8 @@ class acp_listener implements EventSubscriberInterface
 
     /** @var \phpbb\template\template */
     protected $template;
+    
+    protected $config;
 
     /**
      * Constructor
@@ -33,10 +35,11 @@ class acp_listener implements EventSubscriberInterface
      * @return \pico\reputation\event\acp_listener
      * @access public
      */
-    public function __construct(\phpbb\request\request $request, \phpbb\template\template $template, \phpbb\log\log $log, \phpbb\user $user)
+    public function __construct(\phpbb\request\request $request, \phpbb\template\template $template, \phpbb\log\log $log, \phpbb\user $user, \phpbb\config\config $config)
     {
         $this->request = $request;
         $this->template = $template;
+        $this->config = $config;
     }
 
     static public function getSubscribedEvents()
@@ -54,7 +57,7 @@ class acp_listener implements EventSubscriberInterface
         $submit_ary = $event['submit_ary'];
 
         $submit_ary['groupicon_iconpath'] = $this->request->variable('group_groupicon_iconpath', '');
-        $submit_ary['groupicon_grouptopic'] = $this->request->variable('group_groupicon_grouptopic', '');
+        $submit_ary['url'] = $this->request->variable('group_url', '');
         $event['submit_ary'] = $submit_ary;
     }
 
@@ -64,7 +67,8 @@ class acp_listener implements EventSubscriberInterface
 
         $this->template->assign_vars(array(
             'GROUP_GROUPICON_ICONPATH' => (isset($group_row['group_groupicon_iconpath'])) ? $group_row['group_groupicon_iconpath'] : '',
-            'GROUP_GROUPICON_GROUPTOPIC' =>  (isset($group_row['group_groupicon_grouptopic'])) ? $group_row['group_groupicon_grouptopic'] : '',
+            'GROUP_URL' => (isset($group_row['group_url'])) ? $group_row['group_url'] : '',
+            'GROUPICON_VERSION' => $this->config['mfpo_groupicon_version'],
         ));
     }
 
@@ -72,6 +76,7 @@ class acp_listener implements EventSubscriberInterface
     {
         $test_variables = $event['test_variables'];
         $test_variables['groupicon_iconpath'] = 'string';
+        $test_variables['url'] = 'string';
         $event['test_variables'] = $test_variables;
     }
 

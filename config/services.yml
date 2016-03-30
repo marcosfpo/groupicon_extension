@@ -14,5 +14,6 @@ services:
             - @template
             - @log
             - @user
+            - @config
         tags:
             - { name: event.listener }

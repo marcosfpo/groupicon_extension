@@ -44,7 +44,7 @@ class view_listener implements EventSubscriberInterface
         $row = $event['row'];
 	
 	$event['post_row'] = array_merge($event['post_row'], array(
-		'POSTER_GROUPS_ICONS' => $this->gererate_groupicons($row['user_id']),
+		'POSTER_GROUPS_ICONS' => $this->generate_groupicons($row['user_id']),
 	));
     }
 
@@ -65,38 +65,42 @@ class view_listener implements EventSubscriberInterface
     public function memberlist_view_profile($event)
     {
 	$data = $event['member'];
-	$groupicons = $this->gererate_groupicons($data['user_id']);
+	$groupicons = $this->generate_groupicons($data['user_id']);
 	
 	$this->template->assign_vars(array(
 		'GROUPS_ICONS'	=> $groupicons,
 	));
     }
     
-    protected function gererate_groupicons($user_id) 
+    protected function generate_groupicons($user_id) 
     {
 
-	$sql = 'SELECT g.group_id , g.group_name , g.group_groupicon_iconpath, g.group_type, gu.user_id 
+	$sql = 'SELECT g.group_id as gid, g.group_name as gname, g.group_groupicon_iconpath as gicon, g.group_type as gtype, gu.user_id as uid, g.group_url as gurl  
 		FROM ' . GROUPS_TABLE . ' g INNER JOIN ' . USER_GROUP_TABLE . ' gu 
 			ON g.group_id = gu.group_id 
 		WHERE (g.group_groupicon_iconpath <> NULL OR g.group_groupicon_iconpath <>  "") 
 			AND g.group_type <> ' . GROUP_HIDDEN . ' 
 			AND gu.user_id = ' . $user_id;
 
+
 	$return_code = '';
         $result = $this->db->sql_query($sql);
         while ($row = $this->db->sql_fetchrow($result))
         {
-            $group_name = ($row['group_type'] == GROUP_SPECIAL) ? $this->user->lang['G_' . $row['group_name']] : $row['group_name'];
+            $group_icon = isset($row['gicon']) ? trim($row['gicon']) : '';
+            $group_url = isset($row['gurl']) ? trim($row['gurl']) : '';
+            $group_name = ($row['gtype'] == GROUP_SPECIAL) ? $this->user->lang['G_' . $row['gname']] : $row['gname'];
+
             $return_code .= '<span title="' . $group_name . '" style="padding-right: 3px; padding-top: 3px; display: inline-block;">';
-            if (isset($row['group_groupicon_grouptopic']) && $row['group_groupicon_grouptopic'] <> 0)
+            if ($group_url == '')
             {
-                $return_code .= '<a href="/viewtopic.php?t=' . $row['group_groupicon_iconpath'] . '" target="_parent">';
-                $return_code .= '<img width="48px" height="48px" src="' . $row['group_groupicon_iconpath'] . '">';
-                $return_code .= '</a>';
+            	$return_code .= '<img width="48px" height="48px" src="' . $group_icon . '">';
             } 
             else
             {
-                $return_code .= '<img width="48px" height="48px" src="' . $row['group_groupicon_iconpath'] . '">';
+            	$return_code .= '<a href="' . $group_url . '">';
+            	$return_code .= '<img width="48px" height="48px" src="' . $group_icon . '">';
+            	$return_code .= '</a>';
             }
             $return_code .= '</span>';
         }
